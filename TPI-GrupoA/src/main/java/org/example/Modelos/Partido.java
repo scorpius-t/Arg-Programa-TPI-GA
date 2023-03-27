@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Partido {
-    private Integer ronda;
+ //   private Integer ronda;
     private Equipo equipoL;
     private Equipo equipoV;
     private int golesEquipoL;
@@ -51,7 +51,7 @@ public class Partido {
     @Override
     public String toString() {
         return "Partido{" +
-                "ronda=" + ronda +
+             //   "ronda=" + ronda +
                 ", equipoL=" + equipoL +
                 ", equipoV=" + equipoV +
                 ", golesEquipoL=" + golesEquipoL +
