@@ -27,9 +27,21 @@ public class Pronostico {
 
     }
 
-    public int puntos(){
-        int puntos=0;
-        return puntos;
+    public List<PuntajeApuestas> calculoDePuntos(List<Ronda> ronda,int ptoPartido,int ptoGoles, int ptoRonda){
+        List<PuntajeApuestas> puntaje= (List<PuntajeApuestas>) new PuntajeApuestas();
+        /*
+        Calcular puntaje
+
+
+        recorrer partidos de todas las rondas comparando equiposL y equivosV de esta clase. Si hay coincidencia,
+        comparar goles de pronostico con ronda (si V>L V=L V<L). Si hay acierto, ver en puntaje (lista de apostadores y puntaje)
+        si existe apostador (si no existe crearlo), sumar ptoPartido a puntaje.puntaje (usando getter y setter)
+
+        devolver puntaje
+
+         */
+
+        return puntaje;
     }
 
     public String getApostador() {
