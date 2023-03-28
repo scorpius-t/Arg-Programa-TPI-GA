@@ -31,16 +31,16 @@ public class LeerPronosticoFile implements LeerPronostico {
 
                 for(Ronda ronda:rondas) {
 
-                    List<Partido> partidoDeRonda=ronda.getPartidos();
-                    for(Partido partido:partidoDeRonda){
-                        if(partido.getEquipoL().getNombre().equalsIgnoreCase(strPronostico[1]) && partido.getEquipoV().getNombre().equalsIgnoreCase(strPronostico[3]) ){
+                    Partido partidoDeRonda=ronda.getPartido();
+
+                        if(partidoDeRonda.getEquipoL().getNombre().equalsIgnoreCase(strPronostico[1]) && partidoDeRonda.getEquipoV().getNombre().equalsIgnoreCase(strPronostico[3]) ){
                             existePartido=true;
                             Pronostico pronosticoLectura=new Pronostico();
                             pronosticoLectura.agregar(strPronostico[0],strPronostico[1],strPronostico[2],strPronostico[3],strPronostico[4] );
 
                             pronostico.add(pronosticoLectura);
                         }
-                    }
+
                 }
 
 

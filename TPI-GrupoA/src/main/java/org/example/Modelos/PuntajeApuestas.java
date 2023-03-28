@@ -29,8 +29,8 @@ public class PuntajeApuestas {
 
             Partido partidoPronostico = new Partido();
 
-            if (pronostico.getPartidos().size() == 1) {
-                partidoPronostico = pronostico.getPartidos().get(pronostico.getPartidos().size() - 1);
+            if (!pronostico.isEmpty()) {
+                partidoPronostico = pronostico.getPartido();
             } else {
                 System.out.println("ERROR INDICE LINEA PRONOSTICO");
                 puntaje.clear();
@@ -41,20 +41,20 @@ public class PuntajeApuestas {
 
             for (Ronda ronda : rondas) {
 
-                List<Partido> partidoDeRonda = ronda.getPartidos();
+                Partido partidoDeRonda = ronda.getPartido();
 
 
-                for (Partido partido : partidoDeRonda) {
+
 /*
                         String debug1=partido.getEquipoL().getNombre()+partido.getEquipoV().getNombre();
                         String debug2=partidoPronostico.getEquipoL().getNombre()+partidoPronostico.getEquipoV().getNombre();
                         System.out.println(debug1+"\n"+debug2);
 */
-                    if (partido.getEquipoL().getNombre().equalsIgnoreCase(partidoPronostico.getEquipoL().getNombre()) &&
-                            partido.getEquipoV().getNombre().equalsIgnoreCase(partidoPronostico.getEquipoV().getNombre())) {
-                        boolean isPronosticoLocal = (partido.getGolesEquipoL() > partido.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() > partidoPronostico.getGetGolesEquipoV());
-                        boolean isPronosticoVisitante = (partido.getGolesEquipoL() < partido.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() < partidoPronostico.getGetGolesEquipoV());
-                        boolean isPronosticoEmpate = (partido.getGolesEquipoL() == partido.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() == partidoPronostico.getGetGolesEquipoV());
+                    if (partidoDeRonda.getEquipoL().getNombre().equalsIgnoreCase(partidoPronostico.getEquipoL().getNombre()) &&
+                            partidoDeRonda.getEquipoV().getNombre().equalsIgnoreCase(partidoPronostico.getEquipoV().getNombre())) {
+                        boolean isPronosticoLocal = (partidoDeRonda.getGolesEquipoL() > partidoDeRonda.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() > partidoPronostico.getGetGolesEquipoV());
+                        boolean isPronosticoVisitante = (partidoDeRonda.getGolesEquipoL() < partidoDeRonda.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() < partidoPronostico.getGetGolesEquipoV());
+                        boolean isPronosticoEmpate = (partidoDeRonda.getGolesEquipoL() == partidoDeRonda.getGetGolesEquipoV() && partidoPronostico.getGolesEquipoL() == partidoPronostico.getGetGolesEquipoV());
 
                         if (isPronosticoLocal || isPronosticoEmpate || isPronosticoVisitante) {
 
@@ -68,7 +68,7 @@ public class PuntajeApuestas {
                     }
 
 
-                }
+
 
             }
 

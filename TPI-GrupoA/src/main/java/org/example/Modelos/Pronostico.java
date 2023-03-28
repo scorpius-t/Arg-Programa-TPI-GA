@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Pronostico {
-    private List<Partido> partidos = new ArrayList<>();
+    private Partido partido = new Partido();
 
     private String apostador;
 
@@ -24,18 +24,18 @@ public class Pronostico {
         partidoIndividual.setEquipoV(equipoVisitante);
         partidoIndividual.setGetGolesEquipoV(Integer.parseInt(golesVisitante));
 
-       this.partidos.add(partidoIndividual);
+       this.setPartido(partidoIndividual);
 
 
     }
 
 
-    public List<Partido> getPartidos() {
-        return partidos;
+    public Partido getPartido() {
+        return this.partido;
     }
 
-    public void setPartidos(List<Partido> partido) {
-        this.partidos = partido;
+    public void setPartido(Partido partido) {
+        this.partido = partido;
     }
 
     public String getApostador() {
@@ -46,11 +46,14 @@ public class Pronostico {
         this.apostador = apostador;
 
     }
+    public boolean isEmpty(){
+        return (this.apostador.isEmpty() || this.partido.isEmpty());
+    }
 
     @Override
     public String toString() {
         return "Pronostico{" +
-                "partido=" + partidos +
+                "partido=" + partido +
                 ", apostador='" + apostador + '\'' +
                 "}\n";
     }

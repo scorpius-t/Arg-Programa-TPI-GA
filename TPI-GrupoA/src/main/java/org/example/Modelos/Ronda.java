@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ronda {
     private String numero;
-    private List<Partido> partido =new ArrayList<>();
+    private Partido partido =new Partido();
 
     public void agregar(String numRonda, String local, String golesLocal,String visitante,String golesVisitante){
         Partido partidoIndividual=new Partido();
@@ -21,7 +21,7 @@ public class Ronda {
         partidoIndividual.setEquipoV(equipoVisitante);
         partidoIndividual.setGetGolesEquipoV(Integer.parseInt(golesVisitante));
 
-        this.partido.add(partidoIndividual);
+        this.setPartido(partidoIndividual);
 
 
     }
@@ -34,11 +34,11 @@ public class Ronda {
         this.numero = numero;
     }
 
-    public List<Partido> getPartidos() {
+    public Partido getPartido() {
         return partido;
     }
 
-    public void setPartidos(List<Partido> partidos) {
+    public void setPartido(Partido partidos) {
         this.partido = partidos;
     }
 

@@ -47,7 +47,9 @@ public class Partido {
     public void setGetGolesEquipoV(int getGolesEquipoV) {
         this.getGolesEquipoV = getGolesEquipoV;
     }
-
+public boolean isEmpty(){
+        return (this.equipoL.getNombre().isEmpty()||this.equipoV.getNombre().isEmpty());
+}
     @Override
     public String toString() {
         return "Partido{" +
