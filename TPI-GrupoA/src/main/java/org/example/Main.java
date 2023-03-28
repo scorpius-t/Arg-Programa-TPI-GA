@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.Modelos.Pronostico;
+import org.example.Modelos.PuntajeApuestas;
 import org.example.Modelos.Ronda;
 import org.example.Servicios.LeerPronostico;
 import org.example.Servicios.LeerPronosticoFile;
@@ -15,26 +16,13 @@ public class Main {
     public static LeerPronosticoFile leerPronosticoFile=new LeerPronosticoFile();
     public static LeerResultadosFile leerResultadosFile=new LeerResultadosFile();
     //Configuración de puntos - entregas futuras
-    private final int PUNTOS_ACIERTO_PARTIDO =1; // Acierto de Local empate o Visitante
-    private final int PUNTOS_ACIERTO_GOLES =1; // Sumar si aciertan los goles del partido - entrega 3
-    private final int PUNTOS_ACIERTO_RONDA =1; // sumar si acierta la totalidad de ronda - entrega 3
     public static void main(String[] args) {
 
+        final int PUNTOS_ACIERTO_PARTIDO =1; // Acierto de Local empate o Visitante
+        final int PUNTOS_ACIERTO_GOLES =1; // Sumar si aciertan los goles del partido - entrega 3
+        final int PUNTOS_ACIERTO_RONDA =1; // sumar si acierta la totalidad de ronda - entrega 3
+
         /*
-        Lectura de pronosticos. Cada pronostico se carga en un ArrayList Pronostico que contine:
-         -Partido (EquipoL, Equipo V, golesL y golesV)
-         -Apostador
-
-        Lectura de Resultados. Los resultados se cargan en un ArrayList Ronda. Cada elemento de ronda contiene:
-        String N° Ronda
-        ArrayList <Partido> (EquiposL/V y golesL/V)
-
-
-
-        Calculo de puntos:
-        leer nombre de apostadores y generar categorias. filtrar por cada uno
-        para calculo de puntos:
-
 
          */
         String archivoResultados=".\\src\\main\\java\\org\\example\\resultados.txt";
@@ -50,6 +38,10 @@ public class Main {
         pronostico= leerPronosticoFile.leer(archivoPronostico,ronda);
 
         System.out.println(pronostico);
+
+        PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
+
+        System.out.println(puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA));
 
 
 
