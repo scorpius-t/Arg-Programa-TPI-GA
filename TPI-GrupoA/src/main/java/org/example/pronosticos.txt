@@ -7,3 +7,7 @@ Pedro;Polonia;1;Mexico;2
 Pedro;Argentina;4;Mexico;0
 Pedro;ArabiaSaudita;3;Polonia;2
 Juancho;Platense;3;barcelona;2
+Juanita;Argentina;1;ArabiaSaudita;2
+Juanita;Polonia;0;Mexico;0
+Juanita;Argentina;2;Mexico;0
+Juanita;ArabiaSaudita;0;Polonia;2

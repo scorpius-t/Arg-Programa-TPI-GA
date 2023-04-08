@@ -1,0 +1,15 @@
+aciertoGanadorEmpate;Argentina;0;ArabiaSaudita;1
+aciertoGanadorEmpate;Polonia;1;Mexico;1
+aciertoGanadorEmpate;Argentina;1;Mexico;0
+aciertoGanadorEmpate;ArabiaSaudita;0;Polonia;1
+aciertoUnPartido;Argentina;1;ArabiaSaudita;2
+aciertoUnPartido;Polonia;1;Mexico;2
+aciertoUnPartido;Argentina;0;Mexico;0
+aciertoUnPartido;ArabiaSaudita;3;Polonia;2
+aciertoRonda;Argentina;1;ArabiaSaudita;2
+aciertoRonda;Polonia;0;Mexico;0
+aciertoRonda;Argentina;2;Mexico;0
+aciertoRonda;ArabiaSaudita;0;Polonia;2
+aciertoRondaMenosUno;Argentina;1;ArabiaSaudita;2
+aciertoRondaMenosUno;Polonia;0;Mexico;0
+aciertoRondaMenosUno;Argentina;2;Mexico;0
