@@ -30,6 +30,8 @@ public class Pronostico {
     }
 
 
+
+
     public Partido getPartido() {
         return this.partido;
     }

@@ -1,8 +1,5 @@
 package org.example.Modelos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ronda {
     private String numero;
     private Partido partido =new Partido();
@@ -23,6 +20,12 @@ public class Ronda {
 
         this.setPartido(partidoIndividual);
 
+
+    }
+
+    public boolean contienePartido(Equipo local, Equipo visitante){
+        return  (this.getPartido().getEquipoL().getNombre().equalsIgnoreCase(local.getNombre()) &&
+                this.getPartido().getEquipoV().getNombre().equalsIgnoreCase(visitante.getNombre()));
 
     }
 
