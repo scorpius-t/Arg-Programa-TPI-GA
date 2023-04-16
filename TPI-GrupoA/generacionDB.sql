@@ -33,3 +33,19 @@ select * from pronosticos
 insert into pronosticos (numeroApuesta,apostador,equipoL,golesL,equipoV,golesV) 
 values
 (14,'Alberto','Argentina',2,'ArabiaSaudita',0)
+
+insert into pronosticos (numeroApuesta,apostador,equipoL,golesL,equipoV,golesV) 
+values
+(15,'Juanita','Alemania',1,'Japon',2),
+(16,'Juanita','España',7,'CostaRica',0),
+(17,'Juanita','Japon',0,'CostaRica',1),
+(18,'Juanita','España',1,'Alemania',1),
+(19,'Mariana','Alemania',3,'Japon',1),
+(20,'Mariana','España',3,'CostaRica',0),
+(21,'Mariana','Japon',3,'CostaRica',1),
+(22,'Mariana','España',1,'Alemania',4),
+(23,'Pedro','Alemania',2,'Japon',2),
+(24,'Pedro','España',1,'CostaRica',1),
+(25,'Pedro','Japon',0,'CostaRica',1),
+(26,'Pedro','España',0,'Alemania',0)
+go

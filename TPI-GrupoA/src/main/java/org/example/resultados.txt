@@ -2,3 +2,7 @@
 1;Polonia;0;Mexico;0
 1;Argentina;2;Mexico;0
 1;ArabiaSaudita;0;Polonia;2
+2;Alemania;1;Japon;2
+2;España;7;CostaRica;0
+2;Japon;0;CostaRica;1
+2;España;1;Alemania;1

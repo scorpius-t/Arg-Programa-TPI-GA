@@ -24,7 +24,7 @@ public class Configura {
             File f = new File(home + "\\config.properties");
             prop.load(new FileInputStream(f));
             this.setPtosPartido(Integer.parseInt(prop.getProperty("ptosPartido")));
-            this.setPtosFase(Integer.parseInt(prop.getProperty("ptosGoles")));
+            this.setPtosGoles(Integer.parseInt(prop.getProperty("ptosGoles")));
             this.setPtosRonda(Integer.parseInt(prop.getProperty("ptosRonda")));
             this.setPtosFase(Integer.parseInt(prop.getProperty("ptosFase")));
             this.setFuentePronostico(prop.getProperty("fuentePronostico"));

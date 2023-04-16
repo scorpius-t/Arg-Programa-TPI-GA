@@ -15,7 +15,7 @@ public class PuntajeApuestas {
         this.apostadorPuntos = apostadorPuntos;
     }
 
-    public void calculoDePuntos(List<Ronda> rondas, List<Pronostico> pronosticos, int ptoPartido, int ptoGoles, int ptoRonda) {
+    public void calculoDePuntos(List<Ronda> rondas, List<Pronostico> pronosticos, int ptoPartido, int ptoGoles, int ptoRonda, int ptoFase) {
         Map<String, Integer> puntaje = new HashMap<>();
         Map<String, Integer> aciertos = new HashMap<>();
         for (Pronostico pronostico : pronosticos) {
@@ -68,8 +68,15 @@ public class PuntajeApuestas {
 
                             boolean aciertoDeGoles=(partidoDeRonda.getGolesEquipoL()==partidoPronostico.getGolesEquipoL())&&
                                     partidoDeRonda.getGetGolesEquipoV()==partidoPronostico.getGetGolesEquipoV();
-                            if (aciertoDeGoles)
-                                puntos+=ptoGoles;
+                            if (aciertoDeGoles) {
+                                puntos += ptoGoles;
+                                System.out.println(pronostico.getApostador()+" acerto "
+                                                +pronostico.getPartido().getEquipoL().getNombre() + " "
+                                        +pronostico.getPartido().getGolesEquipoL() + " - "
+                                        +pronostico.getPartido().getEquipoV().getNombre()+ " "
+                                        +pronostico.getPartido().getGetGolesEquipoV()
+                                        );
+                            }
 
                             puntaje.put(pronostico.getApostador(), puntos);
 
@@ -83,25 +90,57 @@ public class PuntajeApuestas {
             }
 
         /*
-        Calculo de puntos extra por acierto total de partidos - Practica de expresiones lambda
+        Calculo de puntos extra por ronda y fase - Practica de expresiones lambda
           El cualculo de puntos también se podría reescribir para simplificarlo, pero como la consigna
           permite el menor impacto respecto a entregas anteriores, lo dejo como está.
         */
+
+        //Puntos por Fase (se define como fase a la totalidad de los resultados)
         Set<String> apostadores=puntaje.keySet();
         for(String apostador:apostadores) {
-            if (puntajePerfecto(apostador,pronosticos,rondas)) {
-                puntaje.put(apostador, (puntaje.get(apostador) + ptoRonda));
+            if (puntajeFasePerfecto(apostador,pronosticos,rondas)) {
+                puntaje.put(apostador, (puntaje.get(apostador) + ptoFase));
                 System.out.println(apostador+" tuvo puntaje perfecto");
             }
         }
+
+        //Calculo de puntos por acierto de ronda
+        Set<String> listaNroRondas=rondas.stream().map(r->r.getNumero()).collect(Collectors.toSet());
+        for (String nroRonda:listaNroRondas) {
+            for (String apostador : apostadores) {
+
+                List<Ronda> resultadosUnaRonda= rondas.stream().filter((r)->r.getNumero()
+                        .equals(nroRonda))
+                        .collect(Collectors.toList());
+
+                if (puntajeRondaPerfecto(apostador, pronosticos, resultadosUnaRonda)) {
+                    puntaje.put(apostador, (puntaje.get(apostador) + ptoRonda));
+                    System.out.println(apostador + " tuvo ronda perfecta");
+                }
+            }
+        }
+
 
         this.setApostadorPuntos(puntaje);
         this.setApostadorAciertos(aciertos);
 
         return;
     }
+    private boolean puntajeRondaPerfecto(String apostador,List<Pronostico> pronosticos, List<Ronda> rondas){
+        List<Pronostico> pronosticoDeApostador=pronosticos.stream()
+                .filter(x -> x.getApostador().equalsIgnoreCase(apostador))
+                .collect(Collectors.toList()); // genero lista de pronosticos de 1 apostador
 
-    private boolean puntajePerfecto(String apostador,List<Pronostico> pronosticos, List<Ronda> rondas){
+        List<Partido> partidosDeApostador=new ArrayList<>();
+        pronosticoDeApostador.forEach((p)->partidosDeApostador.add(p.getPartido())); // genero lista de partidos de 1 apostador
+
+        List<Partido> partidosDeRonda=new ArrayList<>();
+        rondas.forEach(ronda ->partidosDeRonda.add(ronda.getPartido()) ); // genero lista de partidos de ronda (para comparar)
+
+        return (partidosDeApostador.containsAll(partidosDeRonda)); //comparo partidos -
+        // tuve que hacer override de equals y hashmap de clases Partido y Equipo para que funcione la funcion equals
+    }
+    private boolean puntajeFasePerfecto(String apostador, List<Pronostico> pronosticos, List<Ronda> rondas){
             List<Pronostico> pronosticoDeApostador=pronosticos.stream()
                     .filter(x -> x.getApostador().equalsIgnoreCase(apostador))
                     .collect(Collectors.toList()); // genero lista de pronosticos de 1 apostador

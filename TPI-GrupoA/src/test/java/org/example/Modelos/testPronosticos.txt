@@ -13,3 +13,11 @@ aciertoRonda;ArabiaSaudita;0;Polonia;2
 aciertoRondaMenosUno;Argentina;1;ArabiaSaudita;2
 aciertoRondaMenosUno;Polonia;0;Mexico;0
 aciertoRondaMenosUno;Argentina;2;Mexico;0
+aciertoFase;Argentina;1;ArabiaSaudita;2
+aciertoFase;Polonia;0;Mexico;0
+aciertoFase;Argentina;2;Mexico;0
+aciertoFase;ArabiaSaudita;0;Polonia;2
+aciertoFase;Alemania;1;Japon;2
+aciertoFase;España;7;CostaRica;0
+aciertoFase;Japon;0;CostaRica;1
+aciertoFase;España;1;Alemania;1

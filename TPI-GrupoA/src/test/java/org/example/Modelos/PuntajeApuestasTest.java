@@ -14,6 +14,7 @@ public class PuntajeApuestasTest {
     final int PUNTOS_ACIERTO_PARTIDO =1; // Acierto de Local empate o Visitante
     final int PUNTOS_ACIERTO_GOLES =1; // Sumar si aciertan los goles del partido - entrega 3
     final int PUNTOS_ACIERTO_RONDA =2; // sumar si acierta la totalidad de ronda - entrega 3
+    final int PUNTOS_ACIERTO_FASE =2; // sumar si acierta la totalidad de ronda - entrega 3
     final String archivoResultados=".\\src\\test\\java\\org\\example\\Modelos\\testResultados.txt";
 
     final String  archivoPronostico=".\\src\\test\\java\\org\\example\\Modelos\\testPronosticos.txt";
@@ -30,7 +31,7 @@ public class PuntajeApuestasTest {
 
        PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
 
-       puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA);
+       puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA,PUNTOS_ACIERTO_FASE);
 
        int calculoEsperado=(PUNTOS_ACIERTO_PARTIDO*4);
 
@@ -49,7 +50,7 @@ public class PuntajeApuestasTest {
 
         PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
 
-        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA);
+        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA,PUNTOS_ACIERTO_FASE);
 
         int calculoEsperado=PUNTOS_ACIERTO_PARTIDO+PUNTOS_ACIERTO_GOLES;
 
@@ -57,7 +58,7 @@ public class PuntajeApuestasTest {
 
     }
     @Test
-    public void aciertoRonda_ok() {
+    public void aciertoRonda_ok() { // Se pronostica UNA ronda
 
         List<Ronda> ronda=new ArrayList<>();
         ronda= leerResultadosFile.leer(archivoResultados);
@@ -68,7 +69,7 @@ public class PuntajeApuestasTest {
 
         PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
 
-        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA);
+        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA,PUNTOS_ACIERTO_FASE);
 
         int calculoEsperado=(PUNTOS_ACIERTO_PARTIDO+PUNTOS_ACIERTO_GOLES)*4+PUNTOS_ACIERTO_RONDA;
 
@@ -88,11 +89,31 @@ public class PuntajeApuestasTest {
 
         PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
 
-        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA);
+        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA,PUNTOS_ACIERTO_FASE);
 
         int calculoEsperado=(PUNTOS_ACIERTO_PARTIDO+PUNTOS_ACIERTO_GOLES)*3;
 
         assertEquals(calculoEsperado,puntajeApuestas.getApostadorPuntos().get("aciertoRondaMenosUno"));
+
+    }
+    @Test
+    // Se pronostican 2 rondas con acierto pleno, por lo cual hay acierto de fase (Fase= acierto de todas las rondas)
+    public void aciertoFase_ok() {
+
+        List<Ronda> ronda=new ArrayList<>();
+        ronda= leerResultadosFile.leer(archivoResultados);
+
+        List<Pronostico> pronostico=new ArrayList<>();
+
+        pronostico= leerPronosticoFile.leer(archivoPronostico,ronda);
+
+        PuntajeApuestas puntajeApuestas=new PuntajeApuestas();
+
+        puntajeApuestas.calculoDePuntos(ronda,pronostico,PUNTOS_ACIERTO_PARTIDO,PUNTOS_ACIERTO_GOLES,PUNTOS_ACIERTO_RONDA,PUNTOS_ACIERTO_FASE);
+
+        int calculoEsperado=(PUNTOS_ACIERTO_PARTIDO+PUNTOS_ACIERTO_GOLES)*8+PUNTOS_ACIERTO_RONDA*2+PUNTOS_ACIERTO_FASE;
+
+        assertEquals(calculoEsperado,puntajeApuestas.getApostadorPuntos().get("aciertoFase"));
 
     }
 }
